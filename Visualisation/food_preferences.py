@@ -2,23 +2,23 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-database = pd.read_csv("/Users/vlad/Desktop/Food_Preference.txt")
+df = pd.read_csv("/Users/vlad/Desktop/Food_Preference.txt")
 
-Gender = database["Gender"].value_counts()
+Gender = df["Gender"].value_counts()
 
-database["Nationality"] = database["Nationality"].replace({"MY":'Malaysian'})
-database.loc[database["Nationality"].str.contains('mala', case= False),"Nationality"] ='Malaysian'
-database["Nationality"] = database["Nationality"].str.rstrip()
-database["Timestamp"] = database["Timestamp"].str.replace(r"\sGMT[+-]\d+", "", regex=True)
-database["Timestamp"] = pd.to_datetime(database["Timestamp"],format="%Y/%m/%d %I:%M:%S %p").dt.strftime("%Y/%m/%d")
+df["Nationality"] = df["Nationality"].replace({"MY":'Malaysian'})
+df.loc[df["Nationality"].str.contains('mala', case= False),"Nationality"] ='Malaysian'
+df["Nationality"] = df["Nationality"].str.rstrip()
+df["Timestamp"] = df["Timestamp"].str.replace(r"\sGMT[+-]\d+", "", regex=True)
+df["Timestamp"] = pd.to_datetime(df["Timestamp"],format="%Y/%m/%d %I:%M:%S %p").dt.strftime("%Y/%m/%d")
 
-Gender = database["Gender"].value_counts()
-Nationality = database["Nationality"].value_counts()
+Gender = df["Gender"].value_counts()
+Nationality = df["Nationality"].value_counts()
 
-Dessert = database["Dessert"].value_counts()
+Dessert = df["Dessert"].value_counts()
 
 Food_Day = (
-    database.groupby(["Timestamp", "Food"])
+    df.groupby(["Timestamp", "Food"])
     .size()
     .unstack(fill_value=0)
 )
