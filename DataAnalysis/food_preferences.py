@@ -41,7 +41,7 @@ axes[0,1].barh(Nationality.index, Nationality.values, edgecolor='black')
 axes[0,1].set_title('Nationality')
 
 axes[1,0].bar(x - width/2, traditional, width, label= "Traditional food", edgecolor='black')
-axes[1,0].bar(x + width/2, western, width, label= "Traditional food", edgecolor='black')
+axes[1,0].bar(x + width/2, western, width, label= "Western Food", edgecolor='black')
 axes[1,0].set_xticks(x)
 axes[1,0].set_xticklabels(dates)
 axes[1,0].set_title("Food Count by Date")
